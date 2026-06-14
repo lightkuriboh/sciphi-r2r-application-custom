@@ -22,7 +22,7 @@ const LoginPage: React.FC = () => {
   };
 
   useEffect(() => {
-    const url = process.env.R2R_DEPLOYMENT_URL || 'http://127.0.0.1:7272';
+    const url = process.env.R2R_DEPLOYMENT_URL || 'http://localhost:7272';
     setDeploymentUrl(url);
   }, []);
 
