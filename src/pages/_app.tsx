@@ -1,5 +1,4 @@
 import type { AppProps } from 'next/app';
-import getConfig from 'next/config';
 import { useRouter } from 'next/router';
 import { useTheme } from 'next-themes';
 import { useEffect, useCallback } from 'react';
@@ -9,8 +8,6 @@ import { brandingConfig } from '@/config/brandingConfig';
 import { UserProvider, useUserContext } from '@/context/UserContext';
 import '@/styles/globals.css';
 import { initializePostHog } from '@/lib/posthog-client';
-
-const { publicRuntimeConfig } = getConfig() || {};
 
 function MyAppContent({ Component, pageProps }: AppProps) {
   const { setTheme } = useTheme();
@@ -65,7 +62,7 @@ function MyApp(props: AppProps) {
   useEffect(() => {
     // Load the env-config.js script dynamically
     const script = document.createElement('script');
-    script.src = `${publicRuntimeConfig?.staticAssetsBasePath}/env-config.js`;
+    script.src = '/env-config.js';
     script.onload = () => {
       if (typeof window !== 'undefined' && window.__RUNTIME_CONFIG__) {
         console.log('Runtime Config:', window.__RUNTIME_CONFIG__);
